@@ -52,6 +52,10 @@ class ScreenCapturer {
   Future<CapturedData?> capture({
     String? imagePath,
     bool silent = true,
+    int xStart = -1,
+    int yStart = -1,
+    int xEnd = -1,
+    int yEnd = -1,
   }) async {
     if (imagePath == null) throw ArgumentError.notNull('imagePath');
     File imageFile = File(imagePath);
@@ -61,6 +65,10 @@ class ScreenCapturer {
     await _systemScreenCapturer.capture(
       imagePath: imagePath,
       silent: silent,
+      xStart: xStart,
+      yStart: yStart,
+      xEnd: xEnd,
+      yEnd: yEnd
     );
     if (imageFile.existsSync()) {
       Uint8List imageBytes = imageFile.readAsBytesSync();
